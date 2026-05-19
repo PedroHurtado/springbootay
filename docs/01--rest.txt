@@ -1,0 +1,267 @@
+models
+
+pizza:{
+    id,
+    name,
+    description,
+    url,
+    price,)(sum(cost ingredients+20%))
+    ingredients:[
+        {id,name,cost}
+    ]
+}
+
+
+server:http://localhost:8080
+
+uri
+    server+/api/pizza
+
+    /api->Libre
+    /pizza->el nombre de las entidades deberia de estar pruraliza
+
+    http://localhost:8080/api/pizzas
+
+    No se deben de expresar acciones(verbos http)
+    
+    GET,POST,PUT,PATCH,DELETE
+    /add                    
+    /update
+    /remove
+
+    No se pueden especificar formatos en la url
+
+    http://localhost:8080/api/pizzas.json
+    http://localhost:8080/api/pizzas.xml
+
+    Accept
+    Content-Type mimetypes application/json
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types
+
+
+    1. Create
+
+    Path:/pizzas
+    Verbo:POST
+    Request
+        Headers
+            content-type:application/json
+    Response
+        Headers
+            content-type:application/json
+    body
+        Request
+            {
+                ....
+            }
+            envio el price y el id?
+        Response
+
+            {
+                id,price
+            }
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+Status Code(OK)
+    
+    201 
+    302 http://localhost:8080/api/pizzas/13246567999->Location
+
+Status Code(ERROR)
+    400->Bad Request
+    422->Valicaciones
+    409->Conflict
+
+    401->No autenticado
+    403->No autorizado->404
+
+
+    405->Metodo no permitido
+    415->Media type no soportado
+
+    500->Reintenta
+
+
+
+ 1. update
+
+    Path:/pizzas/{id}
+    Verbo:PUT|PATCH
+    Request
+        Headers
+            content-type:application/json
+    Response
+        Headers
+            content-type:application/json
+    body
+        Request
+            {
+                ....
+            }
+            envio el price y el id?
+        Response
+
+            {
+                id,price
+            }
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+Status Code(OK)
+    
+    200
+    204 
+   
+    a=1
+    a++
+
+Status Code(ERROR)
+
+    404->Not foud
+
+    400->Bad Request
+    422->Valicaciones
+    409->Conflict
+
+    401->No autenticado
+    403->No autorizado->404
+
+
+    405->Metodo no permitido
+    415->Media type no soportado
+
+    500->Reintenta
+
+
+1. delete
+
+    Path:/pizzas/{id}
+    Verbo:DELETE
+    Request
+        
+    Response
+       
+    body
+        
+            
+    Response
+
+            
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+Status Code(OK)    
+    
+    204 
+   
+    
+Status Code(ERROR)
+
+    404->Not foud
+
+    400->Bad Request    
+    409->Conflict
+
+    401->No autenticado
+    403->No autorizado->404
+
+
+    405->Metodo no permitido   
+
+    500->Reintenta
+
+
+1. get(id)
+
+    Path:/pizzas/{id}
+    Verbo:GET
+    Request
+        Headers
+            accept :application/json
+    Response
+        Headers
+            content-type:application/json
+    body
+        Request           
+        Response
+
+            {
+                id,price
+            }
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+Status Code(OK)
+    
+    200
+   
+
+Status Code(ERROR)
+
+    404->Not foud
+
+    400->Bad Request    
+
+    401->No autenticado
+    403->No autorizado->404
+
+
+    405->Metodo no permitido
+    415->Media type no soportado
+
+    500->Reintenta
+
+
+
+1. get(collecions)
+
+    Path:/pizzas
+    Verbo:GET
+    Request
+        Headers
+            accept :application/json
+    Response
+        Headers
+            content-type:application/json
+    body
+        Request           
+        Response
+
+            [{
+                id,price
+            }]|| []
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+Status Code(OK)
+    
+    200
+   
+
+Status Code(ERROR)
+    
+
+    400->Bad Request    
+
+    401->No autenticado
+    403->No autorizado->404
+
+
+    405->Metodo no permitido
+    415->Media type no soportado
+
+    500->Reintenta
+
+
+query
+    name = car
+    pagina = 1
+    size = 25
+
+    http://localhost:8080/pizzas?name=car&pagee=1&sice=25
+
+    Proyecion
+
+    https://www.odata.org/
+    https://olingo.apache.org/
+    https://graphql.org/
+
+Versionado
+
+    /api/
+    /api/v1
