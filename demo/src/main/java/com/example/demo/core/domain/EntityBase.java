@@ -1,8 +1,13 @@
-package com.example.demo.domain;
+package com.example.demo.core.domain;
 
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Base de toda entidad de dominio. Aporta identidad ({@code id}) e igualdad por id.
+ * Una entidad NO emite eventos; eso es responsabilidad de la raíz del agregado
+ * ({@link AggregateBase}).
+ */
 public abstract class EntityBase {
 
     private final UUID id;
