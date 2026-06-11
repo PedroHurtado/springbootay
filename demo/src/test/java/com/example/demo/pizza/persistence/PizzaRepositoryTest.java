@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
+import com.example.demo.core.config.PipelinrConfig;
 import com.example.demo.core.domain.EntityNotFoundException;
 import com.example.demo.ingredient.domain.Ingredient;
 import com.example.demo.ingredient.persistence.IngredientJpa;
@@ -24,7 +25,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @DataJpaTest
-@Import({ PizzaRepository.class, PizzaMapper.class, IngredientMapper.class })
+@Import({ PizzaRepository.class, PizzaMapper.class, IngredientMapper.class, PipelinrConfig.class })
 class PizzaRepositoryTest {
 
     @Autowired

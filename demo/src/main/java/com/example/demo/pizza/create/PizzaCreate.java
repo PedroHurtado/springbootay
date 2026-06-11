@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,6 +66,7 @@ public class PizzaCreate {
         }
 
         @Override
+        @Transactional
         public Response handle(Command command) {
             Set<Ingredient> ingredients = lookup.findAll(Ingredient.class, command.ingredientIds());
 
@@ -92,6 +94,7 @@ public class PizzaCreate {
             String url,
 
             @NotEmpty(message = "La pizza necesita al menos un ingrediente")
+            @Valid
             Set<@NotNull UUID> ingredientIds) {
     }
 

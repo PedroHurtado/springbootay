@@ -40,7 +40,7 @@ public class Pizza extends AggregateBase {
     public static Pizza create(UUID id, String name, String description, String url,
             Set<Ingredient> ingredients) {
         Pizza pizza = new Pizza(id, name, description, url, ingredients);
-        pizza.add("pizza.create", pizza);
+        pizza.add("pizza:create", pizza);
         return pizza;
     }
 
@@ -49,7 +49,7 @@ public class Pizza extends AggregateBase {
         this.description = validateDescription(description);
         this.url = validateUrl(url);
         setIngredients(ingredients);
-        add("pizza.update", this);
+        add("pizza:update", this);
     }
 
     private void setIngredients(Set<Ingredient> ingredients) {

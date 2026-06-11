@@ -5,6 +5,8 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import an.awesome.pipelinr.Pipeline;
+
 import com.example.demo.core.repository.IAddJpa;
 import com.example.demo.core.repository.IRemoveJpa;
 import com.example.demo.core.repository.IUpdateJpa;
@@ -26,10 +28,12 @@ public class IngredientRepository implements
 
     private final IngredientJpaRepository jpa;
     private final IngredientMapper mapper;
+    private final Pipeline pipeline;
 
-    public IngredientRepository(IngredientJpaRepository jpa, IngredientMapper mapper) {
+    public IngredientRepository(IngredientJpaRepository jpa, IngredientMapper mapper, Pipeline pipeline) {
         this.jpa = jpa;
         this.mapper = mapper;
+        this.pipeline = pipeline;
     }
 
     @Override
@@ -40,6 +44,11 @@ public class IngredientRepository implements
     @Override
     public Mapper<Ingredient, IngredientJpa> mapper() {
         return mapper;
+    }
+
+    @Override
+    public Pipeline pipeline() {
+        return pipeline;
     }
 
     @Override

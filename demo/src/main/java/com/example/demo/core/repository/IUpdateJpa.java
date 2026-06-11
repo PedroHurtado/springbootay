@@ -13,6 +13,6 @@ public interface IUpdateJpa<T extends EntityBase, ID, J>
     @SuppressWarnings("unchecked")
     default void update(T entity) {
         get((ID) entity.getId());   // lanza EntityNotFoundException si no existe
-        jpa().save(mapper().toJpa(entity));
+        save(entity);               // converge en RepositoryJpa#save: despacha eventos + persiste
     }
 }

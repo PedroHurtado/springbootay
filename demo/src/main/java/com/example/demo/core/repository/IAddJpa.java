@@ -8,6 +8,6 @@ public interface IAddJpa<T extends EntityBase, ID, J>
 
     @Override
     default void add(T entity) {
-        jpa().save(mapper().toJpa(entity));
+        save(entity);   // converge en RepositoryJpa#save: despacha eventos + persiste
     }
 }

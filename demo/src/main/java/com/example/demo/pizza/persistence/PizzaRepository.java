@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import an.awesome.pipelinr.Pipeline;
+
 import com.example.demo.core.domain.EntityNotFoundException;
 import com.example.demo.core.repository.IAddJpa;
 import com.example.demo.core.repository.IRemoveJpa;
@@ -29,10 +31,12 @@ public class PizzaRepository implements
 
     private final PizzaJpaRepository jpa;
     private final PizzaMapper mapper;
+    private final Pipeline pipeline;
 
-    public PizzaRepository(PizzaJpaRepository jpa, PizzaMapper mapper) {
+    public PizzaRepository(PizzaJpaRepository jpa, PizzaMapper mapper, Pipeline pipeline) {
         this.jpa = jpa;
         this.mapper = mapper;
+        this.pipeline = pipeline;
     }
 
     @Override
@@ -43,6 +47,11 @@ public class PizzaRepository implements
     @Override
     public Mapper<Pizza, PizzaJpa> mapper() {
         return mapper;
+    }
+
+    @Override
+    public Pipeline pipeline() {
+        return pipeline;
     }
 
     @Override
