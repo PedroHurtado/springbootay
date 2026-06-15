@@ -51,6 +51,7 @@ public class MessageRelay {
         for (Outbox event : pending) {
             eventBus.publish(event);
             event.markAsProcessed();   // PENDING -> PROCESSED
+            this.outboxRepository.save(event);
         }
 
         // 3. El commit de @Transactional persiste los cambios de status.
