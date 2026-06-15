@@ -2,6 +2,7 @@ package com.example.demo.core.outbox;
 
 import java.util.List;
 
+import org.springframework.data.domain.Limit;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -10,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface OutboxRepository extends JpaRepository<Outbox, Long> {
 
-    List<Outbox> findByStatusOrderByTimestampAsc(OutboxStatus status);
+    List<Outbox> findByStatusOrderByTimestampAsc(OutboxStatus status, Limit limit);
 }
