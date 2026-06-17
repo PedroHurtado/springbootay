@@ -1,0 +1,24 @@
+server:
+  # El Gateway es la "puerta de entrada". Escucha en 8081.
+  # El microservicio demo sigue en 8080, detras del Gateway.
+  port: 8081
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          # Cada "route" describe: a donde reenviar (uri) y cuando hacerlo (predicates).
+          routes:
+            # Toda peticion a /api/** se reenvia al microservicio demo.
+            - id: demo-api
+              uri: http://localhost:8080
+              predicates:
+                - Path=/api/**
+
+# Logs utiles en clase: muestran como el Gateway resuelve cada ruta.
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
